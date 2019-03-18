@@ -16,7 +16,7 @@ limitations under the License.
 
 import numpy as np
 import sys
-from mlp.activations import functions, derivatives
+from gliaml.activations import functions, derivatives
 
 
 class NetworkLayer:

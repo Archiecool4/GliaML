@@ -15,7 +15,7 @@ limitations under the License.
 """
 
 import numpy as np
-from mlp.network_utils import NetworkLayer, NeuralNetwork
+from gliaml import NetworkLayer, NeuralNetwork
 
 
 np.random.seed(1)  # to recreate results
@@ -40,7 +40,7 @@ outputs = np.array([[1, 1, 0, 1, 1, 0, 0]]).T
 
 # specify how many iterations to change
 # can add learning rates if so desired
-network.train(inputs, outputs, 6)
+network.train_mean_squared_error(inputs, outputs, 6)
 
 # answer will contain the output for every neuron in every layer
 answer = network.think(np.array([1, 0, 0]))
