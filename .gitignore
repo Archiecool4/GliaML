@@ -2,4 +2,13 @@
 /.idea/
 /gliaml.iml
 
-
+# Unversioned files
+.gitignore
+LICENSE.txt
+MANIFEST.in
+README.md
+__init__.py
+__pycache__/
+example.py
+mlp/
+setup.py
