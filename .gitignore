@@ -14,3 +14,4 @@ mlp/
 setup.py
 dist/
 gliaml.egg-info/
+build/bdist.win-amd64/
