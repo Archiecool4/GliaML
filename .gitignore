@@ -11,4 +11,6 @@ __init__.py
 __pycache__/
 example.py
 mlp/
-setup.py
+
+dist/
+gliaml.egg-info/
