@@ -8,7 +8,7 @@ the following features:
 1. Allow backpropagation with the sigmoid, tanh, and ReLU activation functions.
 2. Allow normalisation of a classifier with the softmax function.
 3. Allow learning rate hyperparameter functionality (including biases)
-4. Allow L2 regularization to prevent over-fitting
+4. Allow L2 regularisation to prevent over-fitting
 
 ## Creating a Network
 
