@@ -17,18 +17,17 @@ limitations under the License.
 import numpy as np
 from gliaml import NetworkLayer, NeuralNetwork
 
-
 np.random.seed(1)  # to recreate results
 
 # following block generates activation function IDs and initialises layers
-activations1 = [2 for i in range(0, 4)]
-activations2 = [2]
+activations1 = [1 for i in range(0, 4)]
+activations2 = [1]
 
 layer1 = NetworkLayer(3, 4, activations1, True)
 layer2 = NetworkLayer(4, 1, activations2, True)
 
 # creates network
-network = NeuralNetwork(layer1, layer2)
+network = NeuralNetwork(0.002, layer1, layer2)
 
 # 7 training samples in a 2D NumPy array
 inputs = np.array([[1, 1, 0], [1, 0, 1], [1, 1, 1], [0, 1, 0],
@@ -40,10 +39,10 @@ outputs = np.array([[1, 1, 0, 1, 1, 0, 0]]).T
 
 # specify how many iterations to change
 # can add learning rates if so desired
-network.train_mean_squared_error(inputs, outputs, 6)
+network.train_mean_squared_error(inputs, outputs, 1000, 0.1, 0.05)
 
 # answer will contain the output for every neuron in every layer
 answer = network.think(np.array([1, 0, 0]))
 
 # return the last layer's output
-print(answer[-1])
+print(answer[-1])  # Expected answer: [0.99957869]

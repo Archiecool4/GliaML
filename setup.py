@@ -23,16 +23,25 @@ def readme():
 
 
 setup(name='gliaml',
-      version='0.0.3',
+      version='0.1.0',
       description='GliaML - Python Machine Learning Library',
       long_description=readme(),
       classifiers=[
           'Development Status :: 3 - Alpha',
+          'Intended Audience :: Developers',
+          'Intended Audience :: Education',
+          'Intended Audience :: Science/Research',
           'License :: OSI Approved :: Apache Software License',
-          'Programming Language :: Python :: 3.6'
+          'Programming Language :: Python :: 3.6',
+          'Topic :: Scientific/Engineering',
+          'Topic :: Scientific/Engineering :: Artificial Intelligence',
+          'Topic :: Software Development',
+          'Topic :: Software Development :: Libraries',
+          'Topic :: Software Development :: Libraries :: Python Modules'
       ],
       keywords='machine learning neural networks',
-      url='https://github.com/Archiecool4/gliaml',
+      url='https://github.com/Archiecool4/GliaML',
+      download_url='https://github.com/Archiecool4/GliaML',
       author='Archie Shahidullah',
       author_email='archie@caltech.edu',
       license='http://www.apache.org/licenses/LICENSE-2.0',

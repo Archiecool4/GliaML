@@ -33,9 +33,10 @@ class NetworkLayer:
 
 class NeuralNetwork:
 
-    def __init__(self, *layers):
+    def __init__(self, l2_regularization=0, *layers):
         # variable number of layers stored as a tuple
         self.layers = layers
+        self.weight_penalty = l2_regularization
 
     @staticmethod
     def mean_squared_error(actual, target):
@@ -51,7 +52,7 @@ class NeuralNetwork:
         return actual - target
 
     @staticmethod
-    def cross_entropy(actual, target):
+    def cross_entropy_loss(actual, target):
         """
         This function implements the cross-entropy cost function.
 
@@ -107,9 +108,7 @@ class NeuralNetwork:
         n = 1
 
         if inputs.ndim == 1:  # if there is only one input sample
-
             for layer in self.layers:
-
                 if n == 1:  # if it is the first layer
                     temp = np.dot(inputs, layer.weights)
 
@@ -133,9 +132,7 @@ class NeuralNetwork:
                     n += 1
 
         else:  # for an arbitrary amount of input samples
-
             for layer in self.layers:
-
                 if n == 1:  # first layer
                     temp = np.dot(inputs, layer.weights)
 
@@ -225,6 +222,9 @@ class NeuralNetwork:
                 layer = self.layers[k]
 
                 if k == 0:  # if first layer
+                    if not self.weight_penalty == 0:  # L2 regularization penalty
+                        layer.weights += self.weight_penalty * layer.weights
+
                     adjustment = lr * train_inputs.T.dot(deltas[num_layers-k-1])
                     layer.weights -= adjustment
 
@@ -233,6 +233,9 @@ class NeuralNetwork:
                                                              0))).dot(deltas[num_layers-k-1])[0]
 
                 else:  # if not first layer
+                    if not self.weight_penalty == 0:
+                        layer.weights += self.weight_penalty * layer.weights
+
                     adjustment = lr * outputs[k-1].T.dot(deltas[num_layers-k-1])
                     layer.weights -= adjustment
 
@@ -257,8 +260,8 @@ class NeuralNetwork:
         self.train(train_inputs, train_outputs, num_iterations,
                    self.mean_squared_error, learning_rate, bias_learning_rate)
 
-    def train_cross_entropy(self, train_inputs, train_outputs, num_iterations,
-                            learning_rate=1, bias_learning_rate=1):
+    def train_cross_entropy_loss(self, train_inputs, train_outputs, num_iterations,
+                                 learning_rate=1, bias_learning_rate=1):
         """
         This function implements backpropagation with the cross-entropy loss cost function (also
         known as negative log-likelihood) for one, or an arbitrary amount of training samples.
@@ -272,4 +275,4 @@ class NeuralNetwork:
         :return: none
         """
         self.train(train_inputs, train_outputs, num_iterations,
-                   self.cross_entropy, learning_rate, bias_learning_rate)
+                   self.cross_entropy_loss, learning_rate, bias_learning_rate)
