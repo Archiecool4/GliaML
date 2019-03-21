@@ -23,7 +23,7 @@ def readme():
 
 
 setup(name='gliaml',
-      version='0.1.0',
+      version='0.1.1',
       description='GliaML - Python Machine Learning Library',
       long_description=readme(),
       classifiers=[
